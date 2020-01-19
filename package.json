@@ -1,11 +1,18 @@
+
 {
-  "name": "rn-bluetooth",
+  "name": "react-native-bluetooth-android",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "keywords": [
+    "react-native"
+  ],
+  "author": "watson",
+  "license": "",
+  "peerDependencies": {
+    "react-native": "^0.59.2"
+  }
 }

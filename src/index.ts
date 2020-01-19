@@ -23,8 +23,8 @@ export const stopDevicesDiscovery = async () => {
     return res
 }
 
-export const listBoundDdevices = async () => {
-    const res: { name: string, address: string} = await RNBluetoothModule.listBoundDdevices()
+export const listDevices = async () => {
+    const res: { name: string, address: string} = await RNBluetoothModule.listBoundDevices()
     return res
 }
 

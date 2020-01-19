@@ -118,7 +118,7 @@ public class RNBluetoothModule extends ReactContextBaseJavaModule implements Lif
     }
 
     @ReactMethod
-    public void listBoundDdevices(Promise promise) {
+    public void listBoundDevices(Promise promise) {
         BluetoothAdapter bluetoothAdapter = bluetoothService.getBluetoothAdapter();
         if (bluetoothAdapter == null) {
             promise.reject("1002", "蓝牙未初始化");

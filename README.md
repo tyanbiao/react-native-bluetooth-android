@@ -1,22 +1,27 @@
 
-# react-native-react-native-bluetooth
+# react-native-bluetooth-android
 
-## Getting started
+ReactNative 蓝牙库，适用于安卓平台
 
-`$ npm install react-native-react-native-bluetooth --save`
+## 快速开始
+`$ npm install react-native-bluetooth-android --save`  
 
-### Mostly automatic installation
+使用 `yarn`  
 
-`$ react-native link react-native-react-native-bluetooth`
+`$ yarn add react-native-bluetooth-android`
 
-### Manual installation
+### 自动链接
+
+`$ react-native link react-native-bluetooth-android`
+
+### 手动安装
 
 
 #### Android
 
-1. Open up `android/app/src/main/java/[...]/MainActivity.java`
-  - Add `import com.reactlibrary.RNReactNativeBluetoothPackage;` to the imports at the top of the file
-  - Add `new RNReactNativeBluetoothPackage()` to the list returned by the `getPackages()` method
+1. 打开 `android/app/src/main/java/[...]/MainActivity.java`
+  -  `import com.reactlibrary.RNBluetoothPackage;` to the imports at the top of the file
+  - Add `new RNBluetoothPackage()` to the list returned by the `getPackages()` method
 2. Append the following lines to `android/settings.gradle`:
   	```
   	include ':react-native-react-native-bluetooth'
@@ -28,11 +33,54 @@
   	```
 
 
-## Usage
+## 使用
 ```javascript
-import RNReactNativeBluetooth from 'react-native-react-native-bluetooth';
+import * as RNBluetooth from 'react-native-bluetooth-android';
 
-// TODO: What to do with the module?
-RNReactNativeBluetooth;
+
 ```
-  
+
+## API 列表
+- `openBluetoothAdapter`
+- `closeBluetoothAdapter`
+- `startDevicesDiscovery`
+- `stopDevicesDiscovery`
+- `listDevices`
+- `createConnection`
+- `closeConnection`
+- `writeBuffer`
+- `onDataReceived`
+- `onDeviceFound`
+- `onConnectionLost`
+
+### openBluetoothAdapter
+
+使用`async`, `await`
+```javascript
+	try {
+		const res = await openBluetoothAdapter()
+		console.log(res)
+	} catch (e) {
+		console.error(e)
+	}
+```
+使用`promise`
+```javascript
+openBluetoothAdapter().then(result => {
+	console.log(res)
+}).catch(e => {
+	console.error(e)
+})
+```
+
+### closeBluetoothAdapter
+
+### startDevicesDiscovery
+### stopDevicesDiscovery
+### listDevices
+### createConnection
+### closeConnection
+### writeBuffer
+### onDataReceived
+### onDeviceFound
+### onConnectionLost

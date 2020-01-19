@@ -9,4 +9,8 @@ public class Constants {
     public static final int MESSAGE_WRITE_FAIL = 5;
     public static final int MESSAGE_DATA_RECEIVED = 6;
     public static final int MESSAGE_ERROR = 7;
+
+    public static final String onDataReceived = "onDataReceived";
+    public static final String onDeviceFound = "onDeviceFound";
+    public static final String onConnectionLoast = "onConnectionLoast";
 }

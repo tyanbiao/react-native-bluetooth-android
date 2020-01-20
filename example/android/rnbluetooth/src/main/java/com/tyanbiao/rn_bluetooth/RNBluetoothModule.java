@@ -53,6 +53,7 @@ public class RNBluetoothModule extends ReactContextBaseJavaModule implements Lif
         reactContext.addActivityEventListener(mActivityEventListener);
         reactContext.addLifecycleEventListener(this);
         receiver = new MyBroadcastReceiver();
+        receiver.setReactApplicationContext(reactContext);
     }
 
     @Override
@@ -225,10 +226,9 @@ class MyActivityEventListener extends BaseActivityEventListener {
 
 // 监听广播
 class MyBroadcastReceiver extends BroadcastReceiver {
-    private Context context;
+    ReactApplicationContext reactApplicationContext;
     @Override
     public void onReceive(Context context, Intent intent) {
-        this.context = context;
         String action = intent.getAction();
         if (BluetoothDevice.ACTION_FOUND.equals(action)) {
             BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
@@ -262,7 +262,10 @@ class MyBroadcastReceiver extends BroadcastReceiver {
     }
 
     public void eventEmit(String eventName, Object payload) {
-        ReactApplicationContext reactContext = (ReactApplicationContext) context;
-        reactContext.getJSModule(RCTDeviceEventEmitter.class).emit(eventName, payload);
+        if (reactApplicationContext == null) return;
+        reactApplicationContext.getJSModule(RCTDeviceEventEmitter.class).emit(eventName, payload);
+    }
+    public void setReactApplicationContext(ReactApplicationContext reactContext) {
+        this.reactApplicationContext = reactContext;
     }
 }

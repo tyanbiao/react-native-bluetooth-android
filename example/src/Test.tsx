@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity }  from 'react-native'
-import * as Bluetooth from './libs/react-native-bluetooth-android'
+import * as Bluetooth from 'react-native-bluetooth-android'
 import Base64 from 'base64-js'
 
 interface Props {

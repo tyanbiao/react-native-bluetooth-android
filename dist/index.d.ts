@@ -2,7 +2,7 @@ export declare const openBluetoothAdapter: () => Promise<boolean>;
 export declare const closeBluetoothAdapter: () => Promise<boolean>;
 export declare const startDevicesDiscovery: () => Promise<boolean>;
 export declare const stopDevicesDiscovery: () => Promise<boolean>;
-export declare const listBoundDdevices: () => Promise<{
+export declare const listDevices: () => Promise<{
     name: string;
     address: string;
 }>;
@@ -17,4 +17,10 @@ declare type Handler2 = (device: {
 }) => void;
 export declare const onDeviceFound: (handler: Handler2) => void;
 export declare const onConnectionLost: (handler: () => void) => void;
+export declare const utils: {
+    bufferToString: (buffer: ArrayBuffer) => string;
+    stringToBuffer: (str: string) => ArrayBuffer;
+    bufferToHex: (buffer: ArrayBuffer) => string;
+    hexToBuffer: (hex: string) => ArrayBuffer;
+};
 export {};

@@ -1,4 +1,5 @@
-package com.tyanbiao.rn_bluetooth;
+package com.tyanbiao.bluetooth;
+
 
 
 public class Constants {

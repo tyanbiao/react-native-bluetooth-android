@@ -87,11 +87,11 @@ exports.stopDevicesDiscovery = function () { return __awaiter(_this, void 0, voi
         }
     });
 }); };
-exports.listBoundDdevices = function () { return __awaiter(_this, void 0, void 0, function () {
+exports.listDevices = function () { return __awaiter(_this, void 0, void 0, function () {
     var res;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, RNBluetoothModule.listBoundDdevices()];
+            case 0: return [4 /*yield*/, RNBluetoothModule.listBoundDevices()];
             case 1:
                 res = _a.sent();
                 return [2 /*return*/, res];
@@ -146,4 +146,39 @@ exports.onDeviceFound = function (handler) {
 };
 exports.onConnectionLost = function (handler) {
     eventEmitter.addListener("onConnectionLost", handler);
+};
+exports.utils = {
+    bufferToString: function (buffer) {
+        var arr = new Uint8Array(buffer);
+        return String.fromCharCode.apply(null, arr);
+    },
+    stringToBuffer: function (str) {
+        var buf = new ArrayBuffer(str.length);
+        var bufView = new Uint8Array(buf);
+        for (var i = 0; i < str.length; i++) {
+            bufView[i] = str.charCodeAt(i);
+        }
+        return buf;
+    },
+    bufferToHex: function (buffer) {
+        var bufferView = new Uint8Array(buffer);
+        var hexStr = '';
+        for (var i = 0; i < bufferView.length; i++) {
+            var temp = '00' + bufferView[i].toString(16);
+            hexStr += temp.substring(temp.length - 2);
+        }
+        return hexStr;
+    },
+    hexToBuffer: function (hex) {
+        var arr = [];
+        for (var i = 0; i < Math.floor(hex.length / 2); i++) {
+            var str = hex[i * 2] + hex[i * 2 + 1];
+            arr[i] = parseInt(str, 16);
+        }
+        if (hex.length % 2 === 1) {
+            arr.push(parseInt(hex[hex.length - 1], 16));
+        }
+        var bufferView = new Uint8Array(arr);
+        return bufferView.buffer;
+    }
 };

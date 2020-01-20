@@ -41,28 +41,28 @@ import * as RNBluetooth from 'react-native-bluetooth-android';
 ```
 
 ## API 列表
-- `openBluetoothAdapter`
-- `closeBluetoothAdapter`
-- `startDevicesDiscovery`
-- `stopDevicesDiscovery`
-- `listDevices`
-- `createConnection`
-- `closeConnection`
-- `writeBuffer`
-- `onDataReceived`
-- `onDeviceFound`
-- `onConnectionLost`
+- [`openBluetoothAdapter`](#open-bluetooth-adapter)
+- [`closeBluetoothAdapter`](#close-bluetooth-adapter)
+- [`startDevicesDiscovery`](#list-devices)
+- [`stopDevicesDiscovery`](#stop-devices-discovery)
+- [`listDevices`](#list-devices)
+- [`createConnection`](#create-connection)
+- [`closeConnection`](#close-connection)
+- [`writeBuffer`](#write-buffer)
+- [`onDataReceived`](#on-data-received)
+- [`onDeviceFound`](#on-device-found)
+- [`onConnectionLost`](#on-connection-lost)
 
-### openBluetoothAdapter
+### <span id="open-bluetooth-adapter">openBluetoothAdapter</span>
 
 使用`async`, `await`
 ```javascript
-	try {
-		const res = await openBluetoothAdapter()
-		console.log(res)
-	} catch (e) {
-		console.error(e)
-	}
+try {
+	const res = await openBluetoothAdapter()
+	console.log(res)
+} catch (e) {
+	console.error(e)
+}
 ```
 使用`promise`
 ```javascript
@@ -73,14 +73,14 @@ openBluetoothAdapter().then(result => {
 })
 ```
 
-### closeBluetoothAdapter
+### <span id="close-bluetooth-adapter">closeBluetoothAdapter</span>
 
-### startDevicesDiscovery
-### stopDevicesDiscovery
-### listDevices
-### createConnection
-### closeConnection
-### writeBuffer
-### onDataReceived
-### onDeviceFound
-### onConnectionLost
+### <span id="start-devices-discovery">startDevicesDiscovery</span>
+### <span id="stop-devices-discovery">stopDevicesDiscovery</span>
+### <span id="list-devices">listDevices</span>
+### <span id="create-connection">createConnection</span>
+### <span id="close-connection">closeConnection</span>
+### <span id="write-buffer">writeBuffer</span>
+### <span id="on-data-received">onDataReceived</span>
+### <span id="on-device-found">onDeviceFound</span>
+### <span id="on-connection-lost">onConnectionLost</span>

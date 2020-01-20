@@ -1,4 +1,5 @@
-package com.tyanbiao;
+package com.tyanbiao.rn_bluetooth;
+
 
 public class Constants {
     public static final int  MESSAGE_CONNECT_OK = 0;

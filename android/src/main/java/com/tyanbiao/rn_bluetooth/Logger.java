@@ -1,4 +1,4 @@
-package com.tyanbiao;
+package com.tyanbiao.rn_bluetooth;
 
 import android.util.Log;
 

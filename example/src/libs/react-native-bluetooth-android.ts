@@ -75,9 +75,10 @@ export const utils = {
         return buf
     },
     bufferToHex: (buffer: ArrayBuffer) => {
+        const bufferView = new Uint8Array(buffer)
         let hexStr = ''
-        for (let i = 0; i < buffer.byteLength; i++) {
-            let temp = '00' + buffer[i].toString(16)
+        for (let i = 0; i < bufferView.length; i++) {
+            let temp = '00' + bufferView[i].toString(16)
             hexStr += temp.substring(temp.length - 2)
         }
         return hexStr

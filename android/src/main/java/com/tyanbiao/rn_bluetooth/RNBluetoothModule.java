@@ -1,5 +1,4 @@
-
-package com.tyanbiao;
+package com.tyanbiao.rn_bluetooth;
 
 import android.Manifest;
 import android.app.Activity;
@@ -12,6 +11,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Looper;
+import android.util.Base64;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -53,6 +53,7 @@ public class RNBluetoothModule extends ReactContextBaseJavaModule implements Lif
         reactContext.addActivityEventListener(mActivityEventListener);
         reactContext.addLifecycleEventListener(this);
         receiver = new MyBroadcastReceiver();
+        receiver.setReactApplicationContext(reactContext);
     }
 
     @Override
@@ -167,9 +168,9 @@ public class RNBluetoothModule extends ReactContextBaseJavaModule implements Lif
     }
 
     @ReactMethod
-    public void writeBuffer(String hex, Promise promise) {
-        byte[] data = DatatypeConverter.parseHexBinary(hex);
-        promise.resolve(bluetoothService.write(data));
+    public void writeBuffer(String b64, Promise promise) {
+        byte[] bytes = Base64.decode(b64, Base64.NO_WRAP);
+        promise.resolve(bluetoothService.write(bytes));
     }
 
     private void eventEmit(String eventName, Object payload) {
@@ -225,10 +226,9 @@ class MyActivityEventListener extends BaseActivityEventListener {
 
 // 监听广播
 class MyBroadcastReceiver extends BroadcastReceiver {
-    private Context context;
+    ReactApplicationContext reactApplicationContext;
     @Override
     public void onReceive(Context context, Intent intent) {
-        this.context = context;
         String action = intent.getAction();
         if (BluetoothDevice.ACTION_FOUND.equals(action)) {
             BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
@@ -262,7 +262,10 @@ class MyBroadcastReceiver extends BroadcastReceiver {
     }
 
     public void eventEmit(String eventName, Object payload) {
-        ReactApplicationContext reactContext = (ReactApplicationContext) context;
-        reactContext.getJSModule(RCTDeviceEventEmitter.class).emit(eventName, payload);
+        if (reactApplicationContext == null) return;
+        reactApplicationContext.getJSModule(RCTDeviceEventEmitter.class).emit(eventName, payload);
+    }
+    public void setReactApplicationContext(ReactApplicationContext reactContext) {
+        this.reactApplicationContext = reactContext;
     }
 }

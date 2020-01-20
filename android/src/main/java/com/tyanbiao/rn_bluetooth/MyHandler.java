@@ -1,8 +1,9 @@
-package com.tyanbiao;
+package com.tyanbiao.rn_bluetooth;
 
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Base64;
 
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
@@ -38,8 +39,11 @@ public class MyHandler extends Handler {
                 break;
             case Constants.MESSAGE_DATA_RECEIVED:
                 byte[] buffer = (byte[]) msg.obj;
-                String hex = DatatypeConverter.printHexBinary(buffer);
-                eventEmitter.emit(Constants.onDataReceived, hex);
+                byte[] b64Bytes = Base64.encode(buffer, Base64.NO_WRAP);
+                String b64 = new String(b64Bytes);
+                Logger.i(RNBluetoothModule.TAG, "length = " + b64.length());
+                Logger.i(RNBluetoothModule.TAG, b64);
+                eventEmitter.emit(Constants.onDataReceived, b64);
                 break;
             case Constants.MESSAGE_ERROR:
                 Exception e = (Exception) msg.obj;

@@ -1,4 +1,5 @@
-package com.tyanbiao;
+package com.tyanbiao.rn_bluetooth;
+
 
 public class DatatypeConverter {
     public static byte[] parseHexBinary(String s) {

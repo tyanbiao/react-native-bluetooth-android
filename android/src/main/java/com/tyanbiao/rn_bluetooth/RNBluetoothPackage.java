@@ -1,5 +1,5 @@
+package com.tyanbiao.rn_bluetooth;
 
-package com.tyanbiao;
 
 import java.util.Arrays;
 import java.util.Collections;

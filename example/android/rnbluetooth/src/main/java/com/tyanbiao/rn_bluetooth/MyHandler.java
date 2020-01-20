@@ -39,7 +39,10 @@ public class MyHandler extends Handler {
                 break;
             case Constants.MESSAGE_DATA_RECEIVED:
                 byte[] buffer = (byte[]) msg.obj;
-                String b64 = Base64.encodeToString(buffer, Base64.DEFAULT);
+                byte[] b64Bytes = Base64.encode(buffer, Base64.NO_WRAP);
+                String b64 = new String(b64Bytes);
+                Logger.i(RNBluetoothModule.TAG, "length = " + b64.length());
+                Logger.i(RNBluetoothModule.TAG, b64);
                 eventEmitter.emit(Constants.onDataReceived, b64);
                 break;
             case Constants.MESSAGE_ERROR:

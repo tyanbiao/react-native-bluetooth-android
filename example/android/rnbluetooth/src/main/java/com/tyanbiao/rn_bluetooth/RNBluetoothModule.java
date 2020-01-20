@@ -169,7 +169,7 @@ public class RNBluetoothModule extends ReactContextBaseJavaModule implements Lif
 
     @ReactMethod
     public void writeBuffer(String b64, Promise promise) {
-        byte[] bytes = Base64.decode(b64, Base64.DEFAULT);
+        byte[] bytes = Base64.decode(b64, Base64.NO_WRAP);
         promise.resolve(bluetoothService.write(bytes));
     }
 
